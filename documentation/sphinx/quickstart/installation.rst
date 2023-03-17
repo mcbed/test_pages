@@ -5,7 +5,7 @@ Installation
 
 1. Installing EtherLab
 ----------------------
-The proposed development builds upon the `IgH EtherCAT Master <https://etherlab.org/en/ethercat/>`. Installation steps are summarized here:
+The proposed development builds upon the `IgH EtherCAT Master <https://etherlab.org/en/ethercat/>`_. Installation steps are summarized here:
 
 .. code-block:: console
 
@@ -113,7 +113,7 @@ Example:
 2. Building `ethercat_driver_ros2`
 ----------------------
 
-1.  Install `ros2` packages. The current development is based of `ros2 humble`. Installation steps are described `here <https://docs.ros.org/en/humble/Installation.html>`.
+1.  Install `ros2` packages. The current development is based of `ros2 humble`. Installation steps are described `here <https://docs.ros.org/en/humble/Installation.html>`_.
 2. Source your `ros2` environment:
 
     .. code-block:: console
