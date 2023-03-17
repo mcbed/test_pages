@@ -81,40 +81,38 @@
 <p><strong>*Required setup : Ubuntu 22.04 LTS*</strong></p>
 <section id="installing-etherlab">
 <h2>1. Installing EtherLab<a class="headerlink" href="#installing-etherlab" title="Permalink to this headline"></a></h2>
-<p>The proposed development builds upon the [IgH EtherCAT Master](<a class="reference external" href="https://etherlab.org/en/ethercat/">https://etherlab.org/en/ethercat/</a>). Installation steps are summarized here:</p>
+<p>The proposed development builds upon the <cite>IgH EtherCAT Master &lt;https://etherlab.org/en/ethercat/&gt;</cite>. Installation steps are summarized here:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 <span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
 <span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>autoconf<span class="w"> </span>libtool<span class="w"> </span>pkg-config<span class="w"> </span>make<span class="w"> </span>build-essential<span class="w"> </span>net-tools
 </pre></div>
 </div>
 <ul>
-<li><p>Install required tools:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools</p>
-</div></blockquote>
+<li><p>Install required tools:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>autoconf<span class="w"> </span>libtool<span class="w"> </span>pkg-config<span class="w"> </span>make<span class="w"> </span>build-essential<span class="w"> </span>net-tools
+</pre></div>
+</div>
 </li>
-<li><p>Setup sources for the EtherCAT Master:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ git clone <a class="reference external" href="https://gitlab.com/etherlab.org/ethercat.git">https://gitlab.com/etherlab.org/ethercat.git</a>
-$ cd ethercat
-$ git checkout stable-1.5
-$ sudo rm /usr/bin/ethercat
-$ sudo rm /etc/init.d/ethercat
-$ ./bootstrap  # to create the configure script</p>
-</div></blockquote>
+<li><p>Setup sources for the EtherCAT Master:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://gitlab.com/etherlab.org/ethercat.git
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>ethercat
+<span class="gp">$ </span>git<span class="w"> </span>checkout<span class="w"> </span>stable-1.5
+<span class="gp">$ </span>sudo<span class="w"> </span>rm<span class="w"> </span>/usr/bin/ethercat
+<span class="gp">$ </span>sudo<span class="w"> </span>rm<span class="w"> </span>/etc/init.d/ethercat
+<span class="gp">$ </span>./bootstrap<span class="w">  </span><span class="c1"># to create the configure script</span>
+</pre></div>
+</div>
 </li>
-<li><p>Configure, build and install libs and kernel modules:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ ./configure –prefix=/usr/local/etherlab  –disable-8139too –disable-eoe –enable-generic</p>
-<p>$ make all modules
-$ sudo make modules_install install
-$ sudo depmod</p>
-</div></blockquote>
+<li><p>Configure, build and install libs and kernel modules:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./configure<span class="w"> </span>--prefix<span class="o">=</span>/usr/local/etherlab<span class="w">  </span>--disable-8139too<span class="w"> </span>--disable-eoe<span class="w"> </span>--enable-generic
+
+<span class="gp">$ </span>make<span class="w"> </span>all<span class="w"> </span>modules
+<span class="gp">$ </span>sudo<span class="w"> </span>make<span class="w"> </span>modules_install<span class="w"> </span>install
+<span class="gp">$ </span>sudo<span class="w"> </span>depmod
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This step is needed every time the Linux kernel is updated.</p>
@@ -122,87 +120,95 @@ $ sudo depmod</p>
 </li>
 </ul>
 <ul>
-<li><p>Configure system:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
-$ sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
-$ sudo mkdir -p /etc/sysconfig
-$ sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat</p>
-</div></blockquote>
+<li><p>Configure system:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/etherlab/bin/ethercat<span class="w"> </span>/usr/bin/
+<span class="gp">$ </span>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/etherlab/etc/init.d/ethercat<span class="w"> </span>/etc/init.d/ethercat
+<span class="gp">$ </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/sysconfig
+<span class="gp">$ </span>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/local/etherlab/etc/sysconfig/ethercat<span class="w"> </span>/etc/sysconfig/ethercat
+</pre></div>
+</div>
 </li>
-<li><p>Create a new <cite>udev</cite> rule:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ sudo gedit /etc/udev/rules.d/99-EtherCAT.rules</p>
-</div></blockquote>
-<p>containing:
-.. code-block:: console</p>
-<blockquote>
-<div><p>KERNEL==”EtherCAT[0-9]*”, MODE=”0664”</p>
-</div></blockquote>
+<li><p>Create a new <cite>udev</cite> rule:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>gedit<span class="w"> </span>/etc/udev/rules.d/99-EtherCAT.rules
+</pre></div>
+</div>
+<p>containing:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">KERNEL==&quot;EtherCAT[0-9]*&quot;, MODE=&quot;0666&quot;</span>
+</pre></div>
+</div>
 </li>
 <li><p>Configure the network adapter for EtherCAT:</p>
-<p>In the configuration file specify the mac address of the network card to be used and its driver
-.. code-block:: console</p>
-<blockquote>
-<div><p>MASTER0_DEVICE=”ff:ff:ff:ff:ff:ff”  # mac address
-DEVICE_MODULES=”generic”</p>
-</div></blockquote>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>gedit<span class="w"> </span>/etc/sysconfig/ethercat_driver_ros2
+</pre></div>
+</div>
+<p>In the configuration file specify the mac address of the network card to be used and its driver</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">MASTER0_DEVICE=&quot;ff:ff:ff:ff:ff:ff&quot;  # </span>mac<span class="w"> </span>address
+<span class="go">DEVICE_MODULES=&quot;generic&quot;</span>
+</pre></div>
+</div>
 </li>
 </ul>
-<p>Now you can start the EtherCAT master:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ sudo /etc/init.d/ethercat start</p>
-</div></blockquote>
-<p>it should print
-.. code-block:: console</p>
-<blockquote>
-<div><p>Starting EtherCAT master 1.5.2  done</p>
-</div></blockquote>
-<p>You can check connected slaves:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ ethercat slaves</p>
-</div></blockquote>
-<p>It should print information of connected slave device:
-.. code-block:: console</p>
-<blockquote>
-<div><p>&lt;id&gt;  &lt;alias&gt;:&lt;position&gt;  &lt;device_state&gt;  +  &lt;device_name&gt;</p>
-</div></blockquote>
-<p>Example:
-.. code-block:: console</p>
-<blockquote>
-<div><p>0  0:0  PREOP  +  &lt;device_0_name&gt;
-0  0:1  PREOP  +  &lt;device_1_name&gt;</p>
-</div></blockquote>
+<p>Now you can start the EtherCAT master:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>/etc/init.d/ethercat<span class="w"> </span>start
+</pre></div>
+</div>
+<p>it should print</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Starting EtherCAT master 1.5.2  done</span>
+</pre></div>
+</div>
+<p>You can check connected slaves:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ethercat<span class="w"> </span>slaves
+</pre></div>
+</div>
+<p>It should print information of connected slave device:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;id&gt;  &lt;alias&gt;:&lt;position&gt;  &lt;device_state&gt;  +  &lt;device_name&gt;</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">0  0:0  PREOP  +  &lt;device_0_name&gt;</span>
+<span class="go">0  0:1  PREOP  +  &lt;device_1_name&gt;</span>
+</pre></div>
+</div>
 </section>
 <section id="building-ethercat-driver-ros2">
 <h2>2. Building <cite>ethercat_driver_ros2</cite><a class="headerlink" href="#building-ethercat-driver-ros2" title="Permalink to this headline"></a></h2>
 <ol class="arabic">
-<li><p>Install <cite>ros2</cite> packages. The current development is based of <cite>ros2 humble</cite>. Installation steps are described [here](<a class="reference external" href="https://docs.ros.org/en/humble/Installation.html">https://docs.ros.org/en/humble/Installation.html</a>).</p></li>
-<li><dl>
-<dt>Source your <cite>ros2</cite> environment:</dt><dd><div class="admonition note">
+<li><p>Install <cite>ros2</cite> packages. The current development is based of <cite>ros2 humble</cite>. Installation steps are described <cite>here &lt;https://docs.ros.org/en/humble/Installation.html&gt;</cite>.</p></li>
+<li><p>Source your <cite>ros2</cite> environment:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">source /opt/ros/humble/setup.bash</span>
+</pre></div>
+</div>
+<div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The ros2 environment needs to be sources in every used terminal. If only one distribution of ros2 is used, it can be added to the <cite>~/.bashrc</cite> file.</p>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Install <cite>colcon</cite> and its extensions :</dt><dd></dd>
-</dl>
+<li><p>Install <cite>colcon</cite> and its extensions :</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">sudo apt install python3-colcon-common-extensions</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-</ol>
-<ol class="arabic simple" start="3">
-<li><dl class="simple">
-<dt>Create a new ros2 workspace:</dt><dd></dd>
-</dl>
+<li><p>Create a new ros2 workspace:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir ~/ros2_ws/src</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
-<li><dl class="simple">
-<dt>Pull relevant packages, install dependencies, compile, and source the workspace by using:</dt><dd></dd>
-</dl>
+<li><p>Pull relevant packages, install dependencies, compile, and source the workspace by using:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ~/ros2_ws</span>
+<span class="go">git clone https://github.com/ICube-Robotics/ethercat_driver_ros2.git src/ethercat_driver_ros2</span>
+<span class="go">rosdep install --ignore-src --from-paths . -y -r</span>
+<span class="go">colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --symlink-install</span>
+<span class="go">source install/setup.bash</span>
+</pre></div>
+</div>
+</div></blockquote>
 </li>
 </ol>
 </section>
