@@ -14,9 +14,9 @@ from pathlib import Path
 
 # -- Project information -----------------------------------------------------
 
-project = "ros2_canopen"
-copyright = "2022, Christoph Hellmann Santos,  Harshavardhan Deshpande"
-author = "Christoph Hellmann Santos,  Harshavardhan Deshpande"
+project = "test_page"
+copyright = "2022, test"
+author = "test guys"
 
 # The full version, including alpha/beta/rc tags
 release = "0.0.1"
