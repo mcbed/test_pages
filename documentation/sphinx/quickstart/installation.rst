@@ -104,9 +104,3 @@ Example:
       colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --symlink-install
       source install/setup.bash
     
-
-.. code-block:: console
-   $ git clone https://gitlab.cc-asp.fraunhofer.de/ipa326/ros-industrial/ros2_canopen
-   $ cd ..
-   $ rosdep install --from-paths src/ros2_canopen --ignore-src -r -y
-   $ colcon build
