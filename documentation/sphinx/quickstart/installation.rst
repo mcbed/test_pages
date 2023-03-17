@@ -7,6 +7,7 @@ Installation
 ----------------------
 The proposed development builds upon the [IgH EtherCAT Master](https://etherlab.org/en/ethercat/). Installation steps are summarized here:
 .. code-block:: console
+  :linenos:
 
   $ sudo apt-get update
   $ sudo apt-get upgrade
@@ -93,7 +94,7 @@ Example:
     .. code-block:: console
       source /opt/ros/humble/setup.bash
     
-    **NOTE**: The ros2 environment needs to be sources in every used terminal. If only one distribution of ros2 is used, it can be added to the `~/.bashrc` file.
+    .. note:: The ros2 environment needs to be sources in every used terminal. If only one distribution of ros2 is used, it can be added to the `~/.bashrc` file.
 3. Install `colcon` and its extensions :
     .. code-block:: console
       sudo apt install python3-colcon-common-extensions
