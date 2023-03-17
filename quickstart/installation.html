@@ -82,10 +82,21 @@
 <section id="installing-etherlab">
 <h2>1. Installing EtherLab<a class="headerlink" href="#installing-etherlab" title="Permalink to this headline"></a></h2>
 <p>The proposed development builds upon the [IgH EtherCAT Master](<a class="reference external" href="https://etherlab.org/en/ethercat/">https://etherlab.org/en/ethercat/</a>). Installation steps are summarized here:
-- Install required tools:</p>
+.. code-block:: console</p>
 <blockquote>
-<div></div></blockquote>
+<div><p>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools</p>
+</div></blockquote>
 <ul>
+<li><p>Install required tools:
+.. code-block:: console</p>
+<blockquote>
+<div><p>$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools</p>
+</div></blockquote>
+</li>
 <li><p>Setup sources for the EtherCAT Master:
 .. code-block:: console</p>
 <blockquote>
