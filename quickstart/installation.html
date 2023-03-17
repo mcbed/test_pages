@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; test_page 0.0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Test documentation ros2" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            test_page
+              <img src="../_static/logo-icube.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-etherlab">1. Installing EtherLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-ethercat-driver-ros2">2. Building <cite>ethercat_driver_ros2</cite></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">test_page</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/quickstart/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<p><strong>*Required setup : Ubuntu 22.04 LTS*</strong></p>
+<section id="installing-etherlab">
+<h2>1. Installing EtherLab<a class="headerlink" href="#installing-etherlab" title="Permalink to this headline"></a></h2>
+<p>The proposed development builds upon the [IgH EtherCAT Master](<a class="reference external" href="https://etherlab.org/en/ethercat/">https://etherlab.org/en/ethercat/</a>). Installation steps are summarized here:
+- Install required tools:</p>
+<blockquote>
+<div></div></blockquote>
+<ul>
+<li><p>Setup sources for the EtherCAT Master:
+.. code-block:: console</p>
+<blockquote>
+<div><p>$ git clone <a class="reference external" href="https://gitlab.com/etherlab.org/ethercat.git">https://gitlab.com/etherlab.org/ethercat.git</a>
+$ cd ethercat
+$ git checkout stable-1.5
+$ sudo rm /usr/bin/ethercat
+$ sudo rm /etc/init.d/ethercat
+$ ./bootstrap  # to create the configure script</p>
+</div></blockquote>
+</li>
+<li><p>Configure, build and install libs and kernel modules:
+.. code-block:: console</p>
+<blockquote>
+<div><p>$ ./configure –prefix=/usr/local/etherlab  –disable-8139too –disable-eoe –enable-generic</p>
+<p>$ make all modules
+$ sudo make modules_install install
+$ sudo depmod</p>
+</div></blockquote>
+<p><strong>NOTE</strong>: This step is needed every time the Linux kernel is updated.</p>
+</li>
+<li><p>Configure system:
+.. code-block:: console</p>
+<blockquote>
+<div><p>$ sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
+$ sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
+$ sudo mkdir -p /etc/sysconfig
+$ sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat</p>
+</div></blockquote>
+</li>
+<li><p>Create a new <cite>udev</cite> rule:
+.. code-block:: console</p>
+<blockquote>
+<div><p>$ sudo gedit /etc/udev/rules.d/99-EtherCAT.rules</p>
+</div></blockquote>
+<p>containing:
+.. code-block:: console</p>
+<blockquote>
+<div><p>KERNEL==”EtherCAT[0-9]*”, MODE=”0664”</p>
+</div></blockquote>
+</li>
+<li><p>Configure the network adapter for EtherCAT:</p>
+<p>In the configuration file specify the mac address of the network card to be used and its driver
+.. code-block:: console</p>
+<blockquote>
+<div><p>MASTER0_DEVICE=”ff:ff:ff:ff:ff:ff”  # mac address
+DEVICE_MODULES=”generic”</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Now you can start the EtherCAT master:
+.. code-block:: console</p>
+<blockquote>
+<div><p>$ sudo /etc/init.d/ethercat start</p>
+</div></blockquote>
+<p>it should print
+.. code-block:: console</p>
+<blockquote>
+<div><p>Starting EtherCAT master 1.5.2  done</p>
+</div></blockquote>
+<p>You can check connected slaves:
+.. code-block:: console</p>
+<blockquote>
+<div><p>$ ethercat slaves</p>
+</div></blockquote>
+<p>It should print information of connected slave device:
+.. code-block:: console</p>
+<blockquote>
+<div><p>&lt;id&gt;  &lt;alias&gt;:&lt;position&gt;  &lt;device_state&gt;  +  &lt;device_name&gt;</p>
+</div></blockquote>
+<p>Example:
+.. code-block:: console</p>
+<blockquote>
+<div><p>0  0:0  PREOP  +  &lt;device_0_name&gt;
+0  0:1  PREOP  +  &lt;device_1_name&gt;</p>
+</div></blockquote>
+</section>
+<section id="building-ethercat-driver-ros2">
+<h2>2. Building <cite>ethercat_driver_ros2</cite><a class="headerlink" href="#building-ethercat-driver-ros2" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Install <cite>ros2</cite> packages. The current development is based of <cite>ros2 humble</cite>. Installation steps are described [here](<a class="reference external" href="https://docs.ros.org/en/humble/Installation.html">https://docs.ros.org/en/humble/Installation.html</a>).</p></li>
+<li><dl class="simple">
+<dt>Source your <cite>ros2</cite> environment:</dt><dd><p><strong>NOTE</strong>: The ros2 environment needs to be sources in every used terminal. If only one distribution of ros2 is used, it can be added to the <cite>~/.bashrc</cite> file.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Install <cite>colcon</cite> and its extensions :</dt><dd></dd>
+</dl>
+</li>
+</ol>
+<ol class="arabic simple" start="3">
+<li><dl class="simple">
+<dt>Create a new ros2 workspace:</dt><dd></dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Pull relevant packages, install dependencies, compile, and source the workspace by using:</dt><dd></dd>
+</dl>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Test documentation ros2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, test.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
