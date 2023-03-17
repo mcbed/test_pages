@@ -8,18 +8,18 @@ Installation
 The proposed development builds upon the [IgH EtherCAT Master](https://etherlab.org/en/ethercat/). Installation steps are summarized here:
 .. code-block:: console
 
-        $ sudo apt-get update
-        $ sudo apt-get upgrade
-        $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
+  $ sudo apt-get update
+  $ sudo apt-get upgrade
+  $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
 
-- Install required tools:
+* Install required tools:
   .. code-block:: console
 
-        $ sudo apt-get update
-        $ sudo apt-get upgrade
-        $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
+    $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
 
-- Setup sources for the EtherCAT Master:
+* Setup sources for the EtherCAT Master:
   .. code-block:: console
     $ git clone https://gitlab.com/etherlab.org/ethercat.git
     $ cd ethercat
@@ -28,7 +28,7 @@ The proposed development builds upon the [IgH EtherCAT Master](https://etherlab.
     $ sudo rm /etc/init.d/ethercat
     $ ./bootstrap  # to create the configure script
 
-- Configure, build and install libs and kernel modules:
+* Configure, build and install libs and kernel modules:
   .. code-block:: console
     $ ./configure --prefix=/usr/local/etherlab  --disable-8139too --disable-eoe --enable-generic
 
@@ -36,7 +36,7 @@ The proposed development builds upon the [IgH EtherCAT Master](https://etherlab.
     $ sudo make modules_install install
     $ sudo depmod
 
-  **NOTE**: This step is needed every time the Linux kernel is updated.
+  .. note:: This step is needed every time the Linux kernel is updated.
 - Configure system:
   .. code-block:: console
     $ sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
