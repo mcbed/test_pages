@@ -6,8 +6,8 @@ Installation
 1. Installing EtherLab
 ----------------------
 The proposed development builds upon the [IgH EtherCAT Master](https://etherlab.org/en/ethercat/). Installation steps are summarized here:
+
 .. code-block:: console
-  :linenos:
 
   $ sudo apt-get update
   $ sudo apt-get upgrade
