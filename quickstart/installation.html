@@ -81,13 +81,12 @@
 <p><strong>*Required setup : Ubuntu 22.04 LTS*</strong></p>
 <section id="installing-etherlab">
 <h2>1. Installing EtherLab<a class="headerlink" href="#installing-etherlab" title="Permalink to this headline"></a></h2>
-<p>The proposed development builds upon the [IgH EtherCAT Master](<a class="reference external" href="https://etherlab.org/en/ethercat/">https://etherlab.org/en/ethercat/</a>). Installation steps are summarized here:
-.. code-block:: console</p>
-<blockquote>
-<div><p>$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools</p>
-</div></blockquote>
+<p>The proposed development builds upon the [IgH EtherCAT Master](<a class="reference external" href="https://etherlab.org/en/ethercat/">https://etherlab.org/en/ethercat/</a>). Installation steps are summarized here:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>autoconf<span class="w"> </span>libtool<span class="w"> </span>pkg-config<span class="w"> </span>make<span class="w"> </span>build-essential<span class="w"> </span>net-tools
+</pre></div>
+</div>
 <ul>
 <li><p>Install required tools:
 .. code-block:: console</p>
@@ -181,10 +180,13 @@ DEVICE_MODULES=”generic”</p>
 </section>
 <section id="building-ethercat-driver-ros2">
 <h2>2. Building <cite>ethercat_driver_ros2</cite><a class="headerlink" href="#building-ethercat-driver-ros2" title="Permalink to this headline"></a></h2>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Install <cite>ros2</cite> packages. The current development is based of <cite>ros2 humble</cite>. Installation steps are described [here](<a class="reference external" href="https://docs.ros.org/en/humble/Installation.html">https://docs.ros.org/en/humble/Installation.html</a>).</p></li>
-<li><dl class="simple">
-<dt>Source your <cite>ros2</cite> environment:</dt><dd><p><strong>NOTE</strong>: The ros2 environment needs to be sources in every used terminal. If only one distribution of ros2 is used, it can be added to the <cite>~/.bashrc</cite> file.</p>
+<li><dl>
+<dt>Source your <cite>ros2</cite> environment:</dt><dd><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The ros2 environment needs to be sources in every used terminal. If only one distribution of ros2 is used, it can be added to the <cite>~/.bashrc</cite> file.</p>
+</div>
 </dd>
 </dl>
 </li>
