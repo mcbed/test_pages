@@ -75,7 +75,6 @@ It should print information of connected slave device:
 
 Example:
 .. code-block:: console
-
   0  0:0  PREOP  +  <device_0_name>
   0  0:1  PREOP  +  <device_1_name>
 
