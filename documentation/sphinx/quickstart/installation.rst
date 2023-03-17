@@ -1,17 +1,12 @@
 Installation
 ===============================
 
-***Required setup : Ubuntu 22.04 LTS***
+**Required setup : Ubuntu 22.04 LTS**
 
 1. Installing EtherLab
 ----------------------
-The proposed development builds upon the `IgH EtherCAT Master <https://etherlab.org/en/ethercat/>`_. Installation steps are summarized here:
-
-.. code-block:: console
-
-  $ sudo apt-get update
-  $ sudo apt-get upgrade
-  $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
+The proposed development builds upon the `IgH EtherCAT Master <https://etherlab.org/en/ethercat/>`_. 
+Installation steps are summarized here:
 
 * Install required tools:
 
@@ -43,7 +38,7 @@ The proposed development builds upon the `IgH EtherCAT Master <https://etherlab.
     $ sudo depmod
 
   .. note:: This step is needed every time the Linux kernel is updated.
-- Configure system:
+* Configure system:
 
   .. code-block:: console
 
@@ -52,7 +47,7 @@ The proposed development builds upon the `IgH EtherCAT Master <https://etherlab.
     $ sudo mkdir -p /etc/sysconfig
     $ sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat
 
-- Create a new `udev` rule:
+* Create a new `udev` rule:
 
   .. code-block:: console
 
@@ -65,7 +60,7 @@ The proposed development builds upon the `IgH EtherCAT Master <https://etherlab.
     KERNEL=="EtherCAT[0-9]*", MODE="0666"
  
 
-- Configure the network adapter for EtherCAT:
+* Configure the network adapter for EtherCAT:
 
   .. code-block:: console
 
@@ -110,36 +105,36 @@ Example:
   0  0:0  PREOP  +  <device_0_name>
   0  0:1  PREOP  +  <device_1_name>
 
-2. Building `ethercat_driver_ros2`
+2. Building :code:`ethercat_driver_ros2`
 ----------------------
 
-1.  Install `ros2` packages. The current development is based of `ros2 humble`. Installation steps are described `here <https://docs.ros.org/en/humble/Installation.html>`_.
-2. Source your `ros2` environment:
+1.  Install :code:`ros2` packages. The current development is based of :code:`ros2 humble`. Installation steps are described `here <https://docs.ros.org/en/humble/Installation.html>`_.
+2. Source your :code:`ros2` environment:
 
-    .. code-block:: console
+  .. code-block:: console
 
-      source /opt/ros/humble/setup.bash
-    
-    .. note:: The ros2 environment needs to be sources in every used terminal. If only one distribution of ros2 is used, it can be added to the `~/.bashrc` file.
-3. Install `colcon` and its extensions :
+    source /opt/ros/humble/setup.bash
+  
+  .. note:: The ROS2 environment needs to be sources in every used terminal. If only one distribution of ROS2 is used, it can be added to the :code:`~/.bashrc` file.
+3. Install :code:`colcon` and its extensions :
 
-    .. code-block:: console
+  .. code-block:: console
 
-      sudo apt install python3-colcon-common-extensions
+    sudo apt install python3-colcon-common-extensions
      
 4. Create a new ros2 workspace:
 
-    .. code-block:: console
+  .. code-block:: console
 
-      mkdir ~/ros2_ws/src
+    mkdir ~/ros2_ws/src
     
 5. Pull relevant packages, install dependencies, compile, and source the workspace by using:
 
-    .. code-block:: console
+  .. code-block:: console
 
-      cd ~/ros2_ws
-      git clone https://github.com/ICube-Robotics/ethercat_driver_ros2.git src/ethercat_driver_ros2
-      rosdep install --ignore-src --from-paths . -y -r
-      colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --symlink-install
-      source install/setup.bash
+    cd ~/ros2_ws
+    git clone https://github.com/ICube-Robotics/ethercat_driver_ros2.git src/ethercat_driver_ros2
+    rosdep install --ignore-src --from-paths . -y -r
+    colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --symlink-install
+    source install/setup.bash
     
