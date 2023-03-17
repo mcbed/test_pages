@@ -6,11 +6,18 @@ Installation
 1. Installing EtherLab
 ----------------------
 The proposed development builds upon the [IgH EtherCAT Master](https://etherlab.org/en/ethercat/). Installation steps are summarized here:
+.. code-block:: console
+
+        $ sudo apt-get update
+        $ sudo apt-get upgrade
+        $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
+
 - Install required tools:
   .. code-block:: console
-    $ sudo apt-get update
-    $ sudo apt-get upgrade
-    $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
+
+        $ sudo apt-get update
+        $ sudo apt-get upgrade
+        $ sudo apt-get install git autoconf libtool pkg-config make build-essential net-tools
 
 - Setup sources for the EtherCAT Master:
   .. code-block:: console
